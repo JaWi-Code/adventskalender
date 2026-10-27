@@ -90,20 +90,38 @@
       justify-content: center;
     }
 
-    .video-frame {
+    .phone-mock {
       position: relative;
-      max-width: 340px;
+      max-width: 300px;
       width: 100%;
-      border-radius: 16px;
-      overflow: hidden;
+      background: #1a1a1a;
+      border-radius: 40px;
+      padding: 14px 10px;
       box-shadow:
-        0 8px 40px rgba(0,0,0,0.45),
-        0 0 80px rgba(198,0,90,0.15);
-      border: 1px solid var(--frost-border);
+        0 8px 40px rgba(0,0,0,0.5),
+        0 0 80px rgba(198,0,90,0.15),
+        inset 0 0 0 2px rgba(255,255,255,0.08);
+      border: 3px solid #333;
+    }
+
+    .phone-notch {
+      width: 100px;
+      height: 22px;
+      background: #1a1a1a;
+      border-radius: 0 0 14px 14px;
+      margin: 0 auto 8px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .phone-screen {
+      position: relative;
+      border-radius: 26px;
+      overflow: hidden;
       background: #000;
     }
 
-    .video-frame video {
+    .phone-screen video {
       display: block;
       width: 100%;
       height: auto;
@@ -124,6 +142,14 @@
       border-radius: 4px;
       pointer-events: none;
       z-index: 2;
+    }
+
+    .phone-bar {
+      width: 100px;
+      height: 4px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 2px;
+      margin: 8px auto 0;
     }
 
     .split {
@@ -315,7 +341,7 @@
     @media (max-width: 600px) {
       .page { padding-block: 1.5rem 2rem; gap: 2rem; }
       .snow { display: none; }
-      .video-frame { max-width: 280px; }
+      .phone-mock { max-width: 260px; }
     }
   </style>
 </head>
@@ -330,18 +356,22 @@
   </header>
 
   <section class="video-section">
-    <div class="video-frame">
-      <span class="video-badge">Vorschau</span>
-      <video controls playsinline preload="metadata">
-        <source src="assets/video.mp4" type="video/mp4">
-      </video>
+    <div class="phone-mock">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <span class="video-badge">Vorschau</span>
+        <video controls playsinline preload="metadata">
+          <source src="assets/video.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="phone-bar"></div>
     </div>
   </section>
 
   <section class="split">
     <div class="card">
       <h2><em>Sie sponsern</em></h2>
-      <p>einen Tagesgewinn und erhalten ein Kalendertürchen als Werbefläche mit Logo, Foto &amp; Text. Unsere redaktionelle Berichterstattung und Werbekampagne sorgen für noch mehr Reichweite und Sichtbarkeit.</p>
+      <p><strong>einen Tagesgewinn</strong> und erhalten ein Kalendertürchen als <strong>Werbefläche mit Logo, Foto &amp; Text</strong>. Unsere redaktionelle Berichterstattung und Werbekampagne sorgen für noch mehr Reichweite und Sichtbarkeit.</p>
       <div class="price-callout">
         <div class="price-pill">
           <span class="label">Eine<br>Kalendertür</span>
@@ -354,7 +384,7 @@
     <div class="card">
       <h2><em>Ihre Vorteile</em></h2>
       <ul class="benefits">
-        <li>Hohe Sichtbarkeit für Ihre Marke direkt im Adventskalender.</li>
+        <li><strong>Hohe Sichtbarkeit</strong> für Ihre Marke direkt im Adventskalender.</li>
         <li>Erreichen Sie täglich eine <strong>engagierte Zielgruppe</strong>.</li>
         <li>Verknüpfen Sie Ihr Unternehmen mit Vorfreude, Überraschung und einer emotionalen Weihnachtszeit.</li>
         <li>Steigern Sie Ihre Reichweite und Interaktion und gewinnen Sie potenzielle <strong>Neukunden</strong>.</li>
@@ -374,7 +404,7 @@
 
   <footer class="footer">
     <div class="footer-logo"><img src="assets/logo.png" alt="Next Level Media" width="90" height="90" style="border-radius:8px;"></div>
-    <div class="footer-brand">Ne&raquo;&raquo;xt Level Media. &middot; powered by Freie Presse Mediengruppe</div>
+    <div class="footer-brand">Next Level Media &middot; powered by Freie Presse Mediengruppe</div>
     <p class="footer-legal">Es gelten die AGB unter www.next-level-media.de/agb</p>
   </footer>
 
