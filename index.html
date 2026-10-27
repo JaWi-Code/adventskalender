@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adventskalender 2026</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap">
+  <style>
+    :root {
+      --bg: #1c0b16;
+      --bg-grad-start: #2a0d1f;
+      --bg-grad-mid: #7a0045;
+      --bg-grad-end: #c2005a;
+      --fg: #ffffff;
+      --fg-muted: rgba(255,255,255,0.72);
+      --accent: #e6007e;
+      --accent-soft: #ff4da6;
+      --frost: rgba(255,255,255,0.09);
+      --frost-border: rgba(255,255,255,0.14);
+      --price-bg: var(--accent);
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      color-scheme: dark;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      background: linear-gradient(155deg, var(--bg-grad-start) 0%, var(--bg-grad-mid) 45%, var(--bg-grad-end) 100%);
+      background-attachment: fixed;
+      color: var(--fg);
+      font-family: var(--font-body);
+      font-size: 14px;
+      padding-inline: 16px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; }
+
+    .page {
+      max-width: 900px;
+      margin: 0 auto;
+      padding-block: 2.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding-block: 1rem;
+    }
+
+    .hero-kicker {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent-soft);
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      line-height: 1.1;
+      margin: 0.5rem 0 0;
+      text-wrap: balance;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent-soft);
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+      color: var(--fg-muted);
+      margin-top: 1rem;
+      line-height: 1.5;
+      max-width: 540px;
+      margin-inline: auto;
+    }
+
+    .video-section {
+      display: flex;
+      justify-content: center;
+    }
+
+    .video-frame {
+      position: relative;
+      max-width: 340px;
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow:
+        0 8px 40px rgba(0,0,0,0.45),
+        0 0 80px rgba(198,0,90,0.15);
+      border: 1px solid var(--frost-border);
+      background: #000;
+    }
+
+    .video-frame video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .video-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    @media (max-width: 640px) {
+      .split { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--frost);
+      border: 1px solid var(--frost-border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .card h2 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 1.4rem;
+      margin: 0 0 1rem;
+      line-height: 1.25;
+    }
+
+    .card h2 em {
+      font-style: italic;
+      color: var(--accent-soft);
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--fg-muted);
+    }
+
+    .benefits {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .benefits li {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--fg-muted);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .benefits li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.45em;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+    }
+
+    .benefits li strong {
+      color: var(--fg);
+      font-weight: 600;
+    }
+
+    .price-callout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .price-pill {
+      background: var(--price-bg);
+      color: #fff;
+      border-radius: 50%;
+      width: 140px;
+      height: 140px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(230,0,126,0.35);
+    }
+
+    .price-pill .label {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 0.85rem;
+      line-height: 1.2;
+    }
+
+    .price-pill .amount {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-top: 0.15rem;
+    }
+
+    .price-note {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      margin-top: 0.6rem;
+    }
+
+    .checklist-section h2 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(1.3rem, 3.5vw, 1.6rem);
+      margin: 0 0 1.25rem;
+    }
+
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .checklist li {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--fg-muted);
+      padding-left: 1.75rem;
+      position: relative;
+    }
+
+    .checklist li::before {
+      content: '\2713';
+      position: absolute;
+      left: 0;
+      color: var(--accent-soft);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--frost-border);
+      text-align: center;
+    }
+
+    .footer-logo { margin-bottom: 0.25rem; }
+
+    .footer-brand {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+    }
+
+    .footer-legal {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.38);
+    }
+
+    .snow {
+      position: fixed;
+      top: -40px;
+      right: 30px;
+      font-size: 120px;
+      opacity: 0.03;
+      pointer-events: none;
+      color: #fff;
+      z-index: 0;
+    }
+
+    @media (max-width: 600px) {
+      .page { padding-block: 1.5rem 2rem; gap: 2rem; }
+      .snow { display: none; }
+      .video-frame { max-width: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="hero">
+    <div class="hero-kicker">BLICK.de &middot; Freie Presse</div>
+    <h1>Advents&shy;kalender <em>2026</em></h1>
+    <p class="hero-sub">24 Tage Interaktion mit unseren Usern. Sichern Sie sich ein Kalendertürchen als Werbefläche mit Logo, Foto &amp; Text.</p>
+  </header>
+
+  <section class="video-section">
+    <div class="video-frame">
+      <span class="video-badge">Vorschau</span>
+      <video controls playsinline preload="metadata">
+        <source src="assets/video.mp4" type="video/mp4">
+      </video>
+    </div>
+  </section>
+
+  <section class="split">
+    <div class="card">
+      <h2><em>Sie sponsern</em></h2>
+      <p>einen Tagesgewinn und erhalten ein Kalendertürchen als Werbefläche mit Logo, Foto &amp; Text. Unsere redaktionelle Berichterstattung und Werbekampagne sorgen für noch mehr Reichweite und Sichtbarkeit.</p>
+      <div class="price-callout">
+        <div class="price-pill">
+          <span class="label">Eine<br>Kalendertür</span>
+          <span class="amount">285 &euro;*</span>
+        </div>
+      </div>
+      <p class="price-note">*zzgl. gesetzliche MwSt.</p>
+    </div>
+
+    <div class="card">
+      <h2><em>Ihre Vorteile</em></h2>
+      <ul class="benefits">
+        <li>Hohe Sichtbarkeit für Ihre Marke direkt im Adventskalender.</li>
+        <li>Erreichen Sie täglich eine <strong>engagierte Zielgruppe</strong>.</li>
+        <li>Verknüpfen Sie Ihr Unternehmen mit Vorfreude, Überraschung und einer emotionalen Weihnachtszeit.</li>
+        <li>Steigern Sie Ihre Reichweite und Interaktion und gewinnen Sie potenzielle <strong>Neukunden</strong>.</li>
+        <li>Bis zu <strong>90.000 Clicks pro Tag</strong> im Jahr 2025.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="checklist-section">
+    <h2>Benötigte Zuarbeiten</h2>
+    <ul class="checklist">
+      <li>Gewinnspielbild &ndash; mindestens 900 &times; 600 px</li>
+      <li>Kurze Gewinnbeschreibung</li>
+      <li>Firmenlogo und Kontaktdaten (Anschrift, Telefon, E-Mail, Website, Kurzbeschreibung)</li>
+    </ul>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-logo"><img src="assets/logo.png" alt="Next Level Media" width="90" height="90" style="border-radius:8px;"></div>
+    <div class="footer-brand">Ne&raquo;&raquo;xt Level Media. &middot; powered by Freie Presse Mediengruppe</div>
+    <p class="footer-legal">Es gelten die AGB unter www.next-level-media.de/agb</p>
+  </footer>
+
+</div>
+
+<div class="snow">&#10052;</div>
+
+</body>
+</html>
